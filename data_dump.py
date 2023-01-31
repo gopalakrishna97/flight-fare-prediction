@@ -1,8 +1,8 @@
 import pymongo
 import pandas as pd
 import json
-client = pymongo.MongoClient("mongodb://localhost:27017")
 
+from flightfare.db_config import mongo_client
 
 DATA_FILE_PATH="Data_Train.xlsx"
 DATABASE_NAME="flightfare"
@@ -18,4 +18,4 @@ if __name__=="__main__":
     print(json_record[0])
 
     # insert json_record to mongoDB
-    client[DATABASE_NAME][COLLECTION_NAME].insert_many(json_record)
+    mongo_client[DATABASE_NAME][COLLECTION_NAME].insert_many(json_record)
