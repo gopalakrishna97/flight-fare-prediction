@@ -22,11 +22,17 @@ class DataIngestion():
                 database_name=self.data_ingestion_config.database_name,
                 collection_name=self.data_ingestion_config.collection_name
             )
+            # test_df:pd.DataFrame = utils.get_collection_as_datafarme(
+            #     database_name=self.data_ingestion_config.database_name,
+            #     collection_name=self.data_ingestion_config.test_collection_name
+            # )
 
             logging.info("Save data in feature store")
            
             #replace na with Nan
             df.replace(to_replace="na",value=np.NAN,inplace=True)
+            # test_df.replace(to_replace="na",value=np.NAN,inplace=True)
+
 
             logging.info("Create feature store folder if not available")
 
@@ -39,7 +45,7 @@ class DataIngestion():
             
             logging.info("split dataset into train and test set")
             #split dataset into train and test set
-            print(df)
+            # print(df)
             train_df,test_df = train_test_split(df,test_size=self.data_ingestion_config.test_size,random_state=42)
 
             logging.info("create dataset directory folder if not available")
@@ -49,6 +55,12 @@ class DataIngestion():
 
             logging.info("Save df to feature store folder")
             #Save df to feature store folder
+            train_df = pd.DataFrame(train_df)
+            test_df = pd.DataFrame(test_df)
+
+            logging.info(f"train and test columns {train_df.columns}===={test_df.columns}")
+            logging.info(f"train and test columns {train_df['Airline'].unique()}===={test_df['Airline'].unique()}")
+
             pd.DataFrame(train_df).to_csv(path_or_buf=self.data_ingestion_config.train_file_path,index=False,header=True)
             pd.DataFrame(test_df).to_csv(path_or_buf=self.data_ingestion_config.test_file_path,index=False,header=True)
 
