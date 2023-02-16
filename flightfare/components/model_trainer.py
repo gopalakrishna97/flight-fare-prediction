@@ -9,7 +9,7 @@ from flightfare import utils
 from sklearn.metrics import r2_score
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.ensemble import RandomForestRegressor
-
+from sklearn.model_selection import RandomizedSearchCV
 
 
 class ModelTrainer:
@@ -25,21 +25,39 @@ class ModelTrainer:
         except Exception as e:
             raise FlightFareException(e)
 
-        def fine_tune(self):
-            try:
-                #Wite code for Grid Search CV
-                pass
-                
-
-            except Exception as e:
-                raise FlightFareException(e)
+    def fine_tune(self,x,y):
+        try:
+            params = {
+            'n_estimators' : [300, 500, 700, 1000, 2100],
+            'max_depth' : [3, 5, 7, 9, 11, 13, 15],
+            'max_features' : ["auto", "sqrt", "log2"],
+            'min_samples_split' : [2, 4, 6, 8]
+                }
+            rs_rfr=RandomizedSearchCV(estimator = RandomForestRegressor(), param_distributions = params, cv = 10, n_jobs=-1, verbose=3)
+            rs_rfr.fit(x, y)
+            best_params = rs_rfr.best_params_
+            return best_params
+        except Exception as e:
+            raise FlightFareException(e)
 
     def train_model(self,x,y):
         try:
             # gb_reg =  GradientBoostingRegressor()
-            gb_reg = RandomForestRegressor()
-            gb_reg.fit(x,y)
-            return gb_reg
+            # best_params = self.fine_tune(x,y)
+            # logging.info(f"best_params : {best_params}")
+            # {'n_estimators': 1000,
+            # 'min_samples_split': 2,
+            # 'max_features': 'auto',
+            # 'max_depth': 13}
+
+            # rf_reg = RandomForestRegressor(n_estimators=best_params.n_estimators,
+            #                                 min_samples_split=best_params.min_samples_split,
+            #                                 max_features=best_params.max_features,
+            #                                 max_depth=best_params.max_depth)
+            # rf_reg = RandomForestRegressor( n_estimators=500,min_samples_split= 8,max_features= 0.1 ,max_depth= 13)
+            rf_reg = RandomForestRegressor()
+            rf_reg.fit(x,y)
+            return rf_reg
         except Exception as e:
             raise FlightFareException(e)
 

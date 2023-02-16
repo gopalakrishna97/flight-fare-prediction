@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-
+from typing import Optional
 
 @dataclass
 class DataIngestionArtifact:
@@ -25,6 +25,12 @@ class ModelTrainerArtifact:
     r2_score_train:float 
     r2_score_test:float
 
-
-class ModelEvaluationArtifact:...
-class ModelPusherArtifact:...
+@dataclass
+class ModelEvaluationArtifact:
+    is_model_accepted: bool
+    improved_accuracy: Optional[float] = None
+    fall_accuracy: Optional[float] = None
+@dataclass
+class ModelPusherArtifact:
+    pusher_model_dir:str
+    saved_model_dir:str
