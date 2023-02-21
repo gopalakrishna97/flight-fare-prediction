@@ -12,7 +12,7 @@ PREDICTION_DIR="prediction"
 DATABASE_NAME="flightfare"
 TEST_COLLECTION_NAME = "flighttestdata"
 
-def batch_prediction()->Optional[str]:
+def batch_prediction():
     try:
         os.makedirs(PREDICTION_DIR,exist_ok=True)
         logging.info(f"Creating model resolver object")
@@ -33,6 +33,7 @@ def batch_prediction()->Optional[str]:
         original_file = utils.get_collection_as_datafarme(DATABASE_NAME,TEST_COLLECTION_NAME)
         original_file['PredictedPrice'] = prediction
         prediction_file_name = f"Predicted_file_{datetime.now().strftime('%m%d%Y__%H%M%S')}.csv"
+        print(f"{datetime.now().strftime('%m%d%Y_%H%M%S')}")
         prediction_file_path = os.path.join(PREDICTION_DIR,prediction_file_name)
         original_file.to_csv(prediction_file_path,index=False,header=True)
     except Exception as e:
