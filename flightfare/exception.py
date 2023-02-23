@@ -15,6 +15,6 @@ class FlightFareException(Exception):
             error_message)
 
     def __str__(self):
-        return self.error_message
+        return self.error_message 
 
 
