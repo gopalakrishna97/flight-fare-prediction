@@ -38,6 +38,6 @@ with DAG(
             task_id="sync_data_to_s3",
             python_callable=sync_artifact_to_s3_bucket
 
-    )
+    ) 
 
     training_pipeline >> sync_data_to_s3
