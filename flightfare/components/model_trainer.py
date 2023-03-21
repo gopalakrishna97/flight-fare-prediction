@@ -9,6 +9,7 @@ from flightfare import utils
 from sklearn.metrics import r2_score
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import RandomizedSearchCV
 
 
@@ -55,7 +56,8 @@ class ModelTrainer:
             #                                 max_features=best_params.max_features,
             #                                 max_depth=best_params.max_depth)
             # rf_reg = RandomForestRegressor( n_estimators=500,min_samples_split= 8,max_features= 0.1 ,max_depth= 13)
-            rf_reg = RandomForestRegressor()
+            # rf_reg = RandomForestRegressor(n_estimators=100, max_depth=10, random_state=42)
+            rf_reg = LinearRegression()
             rf_reg.fit(x,y)
             return rf_reg
         except Exception as e:
