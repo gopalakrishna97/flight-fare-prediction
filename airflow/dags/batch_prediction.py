@@ -11,9 +11,9 @@ with DAG(
     'batch_prediction',
     default_args={'retries': 2},
     # [END default_args]
-    description='Sensor Fault Detection',
+    description='Flight fare prediction',
     schedule_interval="@weekly",
-    start_date=pendulum.datetime(2023, 2, 23, tz="UTC"),
+    start_date=pendulum.datetime(2023, 3, 21, tz="UTC"),
     catchup=False,
     tags=['example'],
 ) as dag:
