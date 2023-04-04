@@ -13,7 +13,7 @@ with DAG(
     # [END default_args]
     description='Flight Fare Prediction',
     schedule_interval="@weekly",
-    start_date=pendulum.datetime(2023, 4, 3, tz="UTC"),
+    start_date=pendulum.datetime(2023, 4, 2, tz="UTC"),
     catchup=False,
     tags=['example']
 ) as dag:
