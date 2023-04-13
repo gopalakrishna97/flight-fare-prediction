@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container-fluid bg-success mb-5" style="height: 55px;">
+        <h1 class="text-center">
+            Flight Fare Prediction
+        </h1>
+    </div>
+    <div class="container bg-light">
+        <form action="\predict" method="post" class="m-3">
+            <div class="row">
+                <div class="col-6">
+                    <div class="m-4">
+                        <label for="datepicker">Pick Departure Date&Time</label><br>
+                        <input class="form-control" type="datetime-local" name="Dep_Time" id="datepicker">
+                    </div>
+                    <div class="form-group m-4">
+                        <label for="sources">Source</label>
+                        <select class="form-control" name="source" id="sources" required>
+                            <option value="" disabled selected>Please select the Source</option>
+                            <option value="Banglore">Banglore</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="New Delhi">New Delhi</option>
+                            <option value="Kolkata">Kolkata</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Cochin">Cochin</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                        </select>
+                    </div>
+                    <div class="form-group m-4">
+                        <label for="airlines">Airlines</label>
+                        <select class="form-control" name="airline" id="airlines" required>
+                            <option value="" selected disabled>Please select the Airlines</option>
+                            <option value="Air Asia">Air Asia</option>
+                            <option value="Air India">Air India</option>
+                            <option value="GoAir">GoAir</option>
+                            <option value="IndiGo">IndiGo</option>
+                            <option value="Jet Airways">Jet Airways</option>
+                            <option value="Jet Airways Business">Jet Airways Business</option>
+                            <option value="Multiple carriers">Multiple carriers</option>
+                            <option value="Multiple carriers Premium economy">Multiple carriers Premium economy</option>
+                            <option value="SpiceJet">SpiceJet</option>
+                            <option value="Vistara">Vistara</option>
+                            <option value="Vistara Premium economy">Vistara Premium economy</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="m-4">
+                        <label for="datepicker">Pick Arrival Date&Time</label><br>
+                        <input class="form-control" type="datetime-local" name="Arrival_Time" id="datepicker">
+                    </div>
+                    <div class="form-group m-4">
+                        <label for="destiny">Destination</label>
+                        <select class="form-control" name="destination" id="destiny" required>
+                            <option value="" disabled selected>Please select the Destination</option>
+                            <option value="Banglore">Banglore</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="New Delhi">New Delhi</option>
+                            <option value="Kolkata">Kolkata</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Cochin">Cochin</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                        </select>
+                    </div>
+                    <div class="m-4">
+                        <label for="stops">Select the Stops</label>
+                        <select class="form-control" name="Total_Stops" id="stops" required="required">
+                            <option value="0">Non-Stop</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" value="Submit" class="btn btn-primary m-4">
+        </form>
+        <div class="p-4">
+            <h3 class="bg-primary text-center"><span >result</span></h3>
+            <h3>{{prediction_text}}</h3>
+        </div>
+    </div>
+</body>
+
+</html>

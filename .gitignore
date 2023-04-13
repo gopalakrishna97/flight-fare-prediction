@@ -3,9 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 artifact
-notebook
+# notebook
 prediction
-saved_models
+# saved_models
 logs
 # C extensions
 *.so

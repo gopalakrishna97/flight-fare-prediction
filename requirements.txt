@@ -18,4 +18,8 @@ PyYAML
 numpy
 scikit-learn
 apache-airflow
+seaborn
+matplotlib
+flask
+flask_cors
 -e .

@@ -24,7 +24,7 @@ def batch_prediction(input_file_path):
         print(test_df.columns)
         logging.info(f'{test_df.head()}')
         modified_df = utils.extracting_new_columns(test_df,"batch_pred_data")
-        logging.info(f"Loading transformer to transform dataset")
+        logging.info(f"Loading transformer to transform dataset{modified_df.columns} ans shape is {modified_df.shape}")
         transformer = utils.load_object(file_path=model_resolver.get_latest_transformer_path())
         test_arr = transformer.transform(modified_df)
 
