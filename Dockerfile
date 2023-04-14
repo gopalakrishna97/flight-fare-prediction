@@ -17,8 +17,9 @@
 
 FROM python:3.10
 USER root
-WORKDIR /app
-COPY . /app
+RUN mkdir /app
+WORKDIR /app/
+COPY . /app/
 
 RUN apt update -y && apt install awscli -y
 
