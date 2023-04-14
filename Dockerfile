@@ -16,6 +16,7 @@
 
 
 FROM python:3.10
+USER root
 WORKDIR /app
 COPY . /app
 
