@@ -19,7 +19,7 @@ def home():
 @cross_origin()
 def predict():
     if request.method == "POST":
-        print(request.form)  
+        # print(request.form)  
         # Date_of_Journey
         date_dep = request.form["Dep_Time"]
         Journey_day = int(pd.to_datetime(date_dep, format="%Y-%m-%dT%H:%M").day)
@@ -351,8 +351,8 @@ if __name__=="__main__":
     try:
         # start_training_pipeline()
         # batch_prediction(input_file_path=input_file_path)
-        print(f"App Running on port http://localhost:5000")
-        app.run(debug=True)
+        print(f"App Running on port http://localhost:8080")
+        app.run(debug=True,host='0.0.0.0',port=8080)
 
     except Exception as e:
         print(e)    
